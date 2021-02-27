@@ -1,19 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerControls : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    [SerializeField] InputAction movement;
+    [SerializeField] float movementSpeed = 1f;
+    [SerializeField] float zRange = 5f;
+    [SerializeField] float yRange = 5f;
+
+    void OnEnable()
     {
-        
+        movement.Enable();
     }
 
-    // Update is called once per frame
+    void OnDisable()
+    {
+        movement.Disable();
+    }
+
     void Update()
     {
-        float horizontalThrow = Input.GetAxis("Horizontal");
-        print(horizontalThrow);
+        ProcessTranslation();
+        ProcessRotation();
+
+    }
+
+    private void ProcessRotation()
+    {
+        transform.localRotation = Quaternion.Euler(-30f, -90, 0f);
+    }
+
+    private void ProcessTranslation()
+    {
+        float zThrow = movement.ReadValue<Vector2>().x;
+        float yThrow = movement.ReadValue<Vector2>().y;
+
+        float zOffset = zThrow * Time.deltaTime * movementSpeed;
+        float rawZPos = transform.localPosition.z + zOffset;
+        float clampedZPos = Mathf.Clamp(rawZPos, -zRange, zRange);
+
+        float yOffset = yThrow * Time.deltaTime * movementSpeed;
+        float rawYPos = transform.localPosition.y + yOffset;
+        float clampedYPos = Mathf.Clamp(rawYPos, -yRange, yRange);
+
+        transform.localPosition = new Vector3(transform.localPosition.x, clampedYPos, clampedZPos);
     }
 }
