@@ -7,6 +7,16 @@ using UnityEngine.SceneManagement;
 public class CollisionHandler : MonoBehaviour
 {
 
+    [SerializeField] AudioClip crashSound;
+    [SerializeField] ParticleSystem crashParticles;
+
+    AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         StartCrashSequence();
@@ -15,6 +25,10 @@ public class CollisionHandler : MonoBehaviour
     private void StartCrashSequence()
     {
         GetComponent<PlayerControls>().enabled = false;
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<BoxCollider>().enabled = false;
+        audioSource.PlayOneShot(crashSound);
+        crashParticles.Play();
         Invoke("ReloadLevel", 1f);
     }
 
