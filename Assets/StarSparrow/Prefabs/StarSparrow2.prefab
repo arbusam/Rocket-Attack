@@ -313,6 +313,14 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Movement
       m_Flags: 8
+  fire:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 7c70143e-839b-4548-854a-ed2cff4ca24e
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
   movementSpeed: 30
   zRange: 15
   yRange: 10.3
@@ -320,6 +328,7 @@ MonoBehaviour:
   controlPitchFactor: -15
   positionYawFactor: 2
   controlRollFactor: -20
+  lasers: []
 --- !u!1 &1648643095111040
 GameObject:
   m_ObjectHideFlags: 0

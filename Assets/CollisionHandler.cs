@@ -12,8 +12,11 @@ public class CollisionHandler : MonoBehaviour
 
     AudioSource audioSource;
 
+    ScoreBoard scoreBoard;
+
     private void Start()
     {
+        scoreBoard = FindObjectOfType<ScoreBoard>();
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -29,6 +32,7 @@ public class CollisionHandler : MonoBehaviour
         GetComponent<BoxCollider>().enabled = false;
         audioSource.PlayOneShot(crashSound);
         crashParticles.Play();
+        scoreBoard.modifyScoreBy(-25);
         Invoke("ReloadLevel", 1f);
     }
 
