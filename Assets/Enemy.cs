@@ -42,6 +42,7 @@ public class Enemy : MonoBehaviour
         HP -= 1;
         if (HP == 0)
         {
+            scoreBoard.modifyScoreBy(1);
             GameObject vfx = Instantiate(deathVFX, this.transform.position, Quaternion.identity);
             vfx.transform.parent = parent.transform;
             HP -= 1;
