@@ -32,7 +32,7 @@ public class CollisionHandler : MonoBehaviour
         GetComponent<BoxCollider>().enabled = false;
         audioSource.PlayOneShot(crashSound);
         crashParticles.Play();
-        scoreBoard.modifyScoreBy(-25);
+        scoreBoard.modifyScoreBy(-50);
         Invoke("ReloadLevel", 1f);
     }
 
