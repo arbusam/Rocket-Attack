@@ -7,4 +7,4 @@ Rocket Attack is a rail shooter game. You are a ship, flying through the world d
 WASD or arrow keys to move up, down, left and right. Left mouse button to shoot.
 
 ## Music
-The background music is provided by [melodyloops](https://www.melodyloops.com)
+The background music is provided by [melodyloops](https://www.melodyloops.com).
